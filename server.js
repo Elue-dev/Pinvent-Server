@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const handleAsync = require("./utils/handle_async");
 
-dotenv.load();
+dotenv.config();
 
 const app = require("./app");
 
