@@ -1,7 +1,5 @@
 const dotenv = require("dotenv-extended");
-const express = require("express");
 const mongoose = require("mongoose");
-const handleAsync = require("./utils/handle_async");
 
 dotenv.config();
 
