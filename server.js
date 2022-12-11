@@ -1,9 +1,9 @@
-const dotenv = require("dotenv");
+const dotenv = require("dotenv-extended");
 const express = require("express");
 const mongoose = require("mongoose");
 const handleAsync = require("./utils/handle_async");
 
-dotenv.config();
+dotenv.load();
 
 const app = require("./app");
 
