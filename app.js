@@ -1,3 +1,4 @@
+const dotenv = require("dotenv");
 const express = require("express");
 require("dotenv").config();
 const path = require("path");
@@ -5,6 +6,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const GlobalError = require("./utils/global_error");
 const errorHandler = require("./controllers/error_controller");
+
+dotenv.config();
 
 const userRouter = require("./routes/user_route");
 const productRouter = require("./routes/product_route");
