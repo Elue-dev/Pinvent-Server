@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://127.0.0.1:5173", "pinvent-app.netlify.app"],
+    origin: ["http://127.0.0.1:5173", process.env.CLIENT_URL],
     credentials: true,
   })
 );
