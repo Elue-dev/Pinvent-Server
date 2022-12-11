@@ -144,7 +144,10 @@ exports.resetPassword = handleAsync(async (req, res, next) => {
 
   console.log(hashedToken);
 
-  const userToken = await Token.findOne({ token: hashedToken });
+  const userToken = await Token.findOne({
+    token: hashedToken,
+    expiresAt: { $gt: Date.now() },
+  });
 
   if (!userToken) {
     return next(new GlobalError("Invalid or expired token", 400));
