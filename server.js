@@ -1,9 +1,11 @@
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
 const handleAsync = require("./utils/handle_async");
 
 const app = require("./app");
+
+dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
