@@ -45,7 +45,7 @@ const message = (url, username, email) => {
                                             password for '${email}' has been generated for you. To reset your password, click the
                                             following link and follow the instructions.
                                         </p>
-                                        <p>Note: This reset link is valid for only 30 minutes</p>
+                                        <p>Note: This reset link is valid for only 10 minutes</p>
                                         <a href="${url}"
                                             style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
                                             Password</a>
