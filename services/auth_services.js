@@ -13,8 +13,10 @@ exports.createAndSendToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
+    path: "/",
     httpOnly: true,
     sameSite: "none",
+    // secure: true,
   };
 
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
@@ -25,7 +27,7 @@ exports.createAndSendToken = (user, statusCode, res) => {
 
   res.status(statusCode).json({
     status: "success",
-    // token,
+    token,
     data: user,
   });
 };

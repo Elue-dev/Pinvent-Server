@@ -43,7 +43,7 @@ exports.login = handleAsync(async (req, res, next) => {
 
 exports.logout = handleAsync(async (req, res, next) => {
   res.cookie("token", "", {
-    expires: new Date(0),
+    expires: Number(new Date(Date.now() * 10 * 1000)),
     httpOnly: true,
   });
 
@@ -107,7 +107,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
     userId: user._id,
     token: hashedToken,
     createdAt: Date.now(),
-    expiresAt: Date.now() + 30 * (60 * 1000), //30 mins
+    expiresAt: Date.now() + 10 * 60 * 1000, // 10 mins
   }).save();
 
   const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
