@@ -5,7 +5,15 @@ const GlobalError = require("../utils/global_error");
 const handleAsync = require("../utils/handle_async");
 
 exports.requireAuth = handleAsync(async (req, res, next) => {
-  const token = req.cookies.token;
+  // const token = req.cookies.token;
+  let token;
+  const headers = req.headers.authorization;
+
+  if (headers && headers.startsWith("Bearer")) {
+    token = headers.split(" ")[1];
+  } else if (req.cookies.token) {
+    token = req.cookies.token;
+  }
 
   if (!token) {
     return next(
