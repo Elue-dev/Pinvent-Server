@@ -69,12 +69,7 @@ exports.updatePassword = handleAsync(async (req, res, next) => {
   }
 
   if (oldPassword === newPassword) {
-    return next(
-      new GlobalError(
-        "Please specify a different password from old password",
-        400
-      )
-    );
+    return next(new GlobalError("Please use a different password", 400));
   }
 
   user.password = newPassword;
