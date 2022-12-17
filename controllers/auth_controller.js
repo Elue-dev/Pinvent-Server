@@ -59,7 +59,9 @@ exports.updatePassword = handleAsync(async (req, res, next) => {
   const { oldPassword, newPassword } = req.body;
 
   if (!oldPassword || !newPassword) {
-    return next(new GlobalError("Please specify password credentials", 400));
+    return next(
+      new GlobalError("Please specify all password credentials", 400)
+    );
   }
 
   if (!(await user.correctPassword(oldPassword, user.password))) {
@@ -68,7 +70,10 @@ exports.updatePassword = handleAsync(async (req, res, next) => {
 
   if (oldPassword === newPassword) {
     return next(
-      new GlobalError("Please specify different password credentials", 400)
+      new GlobalError(
+        "Please specify a different password from old password",
+        400
+      )
     );
   }
 
@@ -76,7 +81,7 @@ exports.updatePassword = handleAsync(async (req, res, next) => {
 
   await user.save();
 
-  createAndSendToken(user, 200, res);
+  createAndSendToken("", 200, res);
 });
 
 exports.forgotPassword = handleAsync(async (req, res, next) => {
