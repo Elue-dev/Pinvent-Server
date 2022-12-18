@@ -6,6 +6,7 @@ const handleAsync = require("../utils/handle_async");
 const { createAndSendToken } = require("../services/auth_services");
 const message = require("../utils/auth_message");
 const sendEmail = require("../utils/send_email");
+const welcome_message = require("../utils/welcome_message");
 
 exports.signup = handleAsync(async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -23,6 +24,15 @@ exports.signup = handleAsync(async (req, res, next) => {
   const user = await User.create({ username, email, password });
 
   createAndSendToken(user, 201, res);
+
+  const subject = "Welcome to Pinvent!";
+  const send_to = email;
+  const sent_from = process.env.EMAIL_USER;
+
+  const url = `${process.env.CLIENT_URL}/edit-profile`;
+
+  const body = welcome_message(url, username);
+  await sendEmail(subject, body, send_to, sent_from);
 });
 
 exports.login = handleAsync(async (req, res, next) => {
