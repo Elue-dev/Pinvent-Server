@@ -29,7 +29,7 @@ exports.login = handleAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new GlobalError("Please provide your email and password"), 400);
+    return next(new GlobalError("Please provide email and password"), 400);
   }
 
   const user = await User.findOne({ email }).select("+password");
@@ -69,7 +69,7 @@ exports.updatePassword = handleAsync(async (req, res, next) => {
   }
 
   if (oldPassword === newPassword) {
-    return next(new GlobalError("Please use a different password", 400));
+    return next(new GlobalError("New password can't be old password", 400));
   }
 
   user.password = newPassword;
@@ -122,7 +122,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
 
     res.status(200).json({
       status: "success",
-      message: "An email has been sent to reset your password!",
+      message: "Password reset email sent",
     });
   } catch (error) {
     res.status(500).json({
