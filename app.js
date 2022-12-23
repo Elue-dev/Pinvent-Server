@@ -18,7 +18,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://127.0.0.1:5176",
+      "http://127.0.0.1:5173",
       "https://pinvent-client.vercel.app",
       process.env.CLIENT_URL,
     ],

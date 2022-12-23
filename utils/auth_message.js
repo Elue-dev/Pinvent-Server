@@ -1,4 +1,4 @@
-const message = (url, username, email) => {
+const message = (url, username, email, device, browser, OS) => {
   return `
     
 <!doctype html>
@@ -46,6 +46,9 @@ const message = (url, username, email) => {
                                             following link and follow the instructions.
                                         </p>
                                         <p>Note: This reset link is valid for only 10 minutes</p>
+                                        <p>Device: ${device}</p>
+                                        <p>Browser: ${browser}</p>
+                                        <p>OS: ${OS}</p>
                                         <a href="${url}"
                                             style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
                                             Password</a>

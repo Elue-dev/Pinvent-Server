@@ -45,7 +45,7 @@ exports.welcome_message = (url, username) => {
                                             We're all a big family here, so make sure to update your user profile details so we get to know you a bit better!
                                             </p>
                                             </span>
-                                            <span style='text-align:left;>
+                                            <span style='text-align:left'>
                                             <p>Regards,<br> Pinvent team.</p>
                                             </span>
                                             <span style='text-align: left'>

@@ -7,6 +7,7 @@ const { createAndSendToken } = require("../services/auth_services");
 const message = require("../utils/auth_message");
 const sendEmail = require("../utils/send_email");
 const { welcome_message } = require("../utils/welcome_message");
+const parser = require("ua-parser-js");
 
 exports.signup = handleAsync(async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -122,12 +123,25 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
 
   const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
+  const userAgent = parser(req.headers["user-agent"]);
+  console.log(userAgent);
+
+  const device = userAgent.ua;
+  const browser = userAgent.ua.browser.name;
+  const OS = `${userAgent.os.name}(${userAgent.os.version})`;
   const subject = "Password Reset Request";
   const send_to = user.email;
   const sent_from = process.env.EMAIL_USER;
 
   try {
-    const body = message(resetUrl, user.username, user.email);
+    const body = message(
+      resetUrl,
+      user.username,
+      user.email,
+      device,
+      browser,
+      OS
+    );
     await sendEmail(subject, body, send_to, sent_from);
 
     res.status(200).json({

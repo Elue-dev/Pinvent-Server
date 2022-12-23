@@ -16,7 +16,6 @@ exports.createAndSendToken = (user, statusCode, res) => {
     path: "/",
     httpOnly: true,
     sameSite: "none",
-    // secure: true,
   };
 
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
