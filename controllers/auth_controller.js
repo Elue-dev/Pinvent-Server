@@ -127,7 +127,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
   console.log(userAgent);
 
   const device = userAgent.ua;
-  const browser = userAgent.ua.browser.name;
+  const browser = userAgent.browser.name;
   const OS = `${userAgent.os.name}(${userAgent.os.version})`;
   const subject = "Password Reset Request";
   const send_to = user.email;
