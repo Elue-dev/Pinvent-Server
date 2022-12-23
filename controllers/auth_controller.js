@@ -124,9 +124,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
   const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
   const userAgent = parser(req.headers["user-agent"]);
-  console.log(userAgent);
 
-  const device = userAgent.ua;
   const browser = userAgent.browser.name;
   const OS = `${userAgent.os.name || "Not detected"}(${
     userAgent.os.version || "Not detected"
@@ -136,14 +134,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
   const sent_from = process.env.EMAIL_USER;
 
   try {
-    const body = message(
-      resetUrl,
-      user.username,
-      user.email,
-      device,
-      browser,
-      OS
-    );
+    const body = message(resetUrl, user.username, user.email, browser, OS);
     await sendEmail(subject, body, send_to, sent_from);
 
     res.status(200).json({
