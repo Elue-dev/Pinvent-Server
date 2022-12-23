@@ -46,7 +46,7 @@ exports.login = handleAsync(async (req, res, next) => {
   const user = await User.findOne({ email }).select("+password");
 
   if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new GlobalError("Invalid email or password"), 401);
+    return next(new GlobalError("Invalid email or password"), 400);
   }
 
   createAndSendToken(user, 200, res);

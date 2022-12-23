@@ -6,7 +6,8 @@ class GlobalError extends Error {
     this.status = `${statusCode}`.startsWith("4") ? "fail" : "error";
     this.isOperational = true;
 
-    Error.captureStackTrace(this, this.constructor);
+    process.env.NODE_ENV === "development" &&
+      Error.captureStackTrace(this, this.constructor);
   }
 }
 
