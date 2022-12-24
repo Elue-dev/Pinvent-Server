@@ -25,11 +25,19 @@ const hanndleJWTExpiredError = () =>
   new GlobalError("Your token has expired. Please log in again", 401);
 
 const sendErrorDev = (err, res) => {
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-    stack: err.stack,
-  });
+  const errorObj =
+    process.env.NODE_ENV === "development"
+      ? {
+          status: err.status,
+          message: err.message,
+          stack: err.stack,
+        }
+      : {
+          status: err.status,
+          message: err.message,
+        };
+
+  res.status(err.statusCode).json(errorObj);
 };
 
 const sendErrorProd = (err, res) => {
