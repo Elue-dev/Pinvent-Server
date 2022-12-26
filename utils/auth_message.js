@@ -52,8 +52,9 @@ const message = (url, username, email, browser, OS) => {
                                             Password</a>
                                             <br>
                                             <h3>Details of this request: </h3>
-                                            <p><b>Browser:</b> ${browser}<p>
-                                            <p><b>Device</b>${OS}</p>
+                                            <p style="color:#455056; font-size:15px;line-height:24px; margin:0;"><b>Date:</b> ${new Date().toDateString()}</p>
+                                            <p style="color:#455056; font-size:15px;line-height:24px; margin:0;"><b>Browser:</b> ${browser}<p>
+                                            <p style="color:#455056; font-size:15px;line-height:24px; margin:0;"><b>Device:</b> ${OS}</p>
                                     </td>
                                 </tr>
                                 <tr>
